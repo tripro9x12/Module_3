@@ -1,0 +1,37 @@
+﻿@model List<Category>
+@{
+    ViewData["Title"] = "Danh sách Thể Loại";
+}
+<div class="text-center">
+    <h5 class="display-4">Danh sách Thể Loại bánh</h5>
+    <table id="tbMovie" class="table table-bordered table-hover table-primary ">
+        <thead class="thead-dark">
+            <tr>
+                <th>#ID</th>
+                <th>Thể Loại</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody class="bg-light">
+            @foreach (var category in Model)
+            {
+                <tr>
+                    <td>@category.CategoryId</td>
+                    <td>@category.CategoryName</td>
+                    <td>
+                        <a asp-controller="Home" asp-action="CakeOfCategory" asp-route-id="@category.CategoryId" class="btn btn-info">Xem Thông Tin</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<style>
+    a {
+        margin-right: 10px;
+    }
+</style>
+@section Scripts{
+    <script src="~/lib/bootbox.js/bootbox.min.js"></script>
+    <script src="~/js/delete.js" asp-append-version="true"></script>
+}

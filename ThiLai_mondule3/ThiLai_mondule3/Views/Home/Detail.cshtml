@@ -1,0 +1,15 @@
+﻿@model BookViewModel
+@{
+    ViewBag.Title = "Thông Tin Học Viên";
+}
+<div class="text-center" style="border: 1px solid #808080; border-radius: 5px; width: 60%; margin: 10px auto;">
+    <h4>Tên sách: @Model.BookName</h4>
+    <p>Tên tác giả: @Model.Author</p>
+    <p>Thể loại: @Model.CategoryName</p>
+    <p>Ngày sản xuất: @Model.Time.ToString("dd/MM/yyyy")</p>
+    <p>Nội dung: @Model.Content</p>
+    <p>Số lượng sách: @Model.Amount</p>
+</div>
+<div class="text-center">
+    <a asp-controller="Home" asp-action="Index" class="btn btn-warning btnn">Back</a>
+</div>

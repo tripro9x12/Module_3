@@ -1,0 +1,28 @@
+﻿
+@{
+    var employees = ViewBag.Employee as IEnumerable<Employee>;
+    ViewBag.Title = "Employees List";
+}
+<div class="row">
+    @foreach (var employee in employees)
+    {
+        var avatarPath = $"/images/{(employee.AvatarPath ?? "1.png")}";
+        <div class="col-sm-3">
+            <div class="card my-2 m-1">
+                <div class="card-header">
+                    <h4 class="text-center">@employee.Fullname</h4>
+                </div>
+                <img src="@avatarPath" class="card-img-top my-2 images_fix" asp-append-version="true"/>
+                <div class="card-footer text-center">
+                    @*<a href="~/Home/Details/@employee.Id">View</a>
+                    @Html.ActionLink("View","Details","Home",new { id = employee.Id})
+                    <a href="@Url.ActionLink("Details","Home",new { id = employee.Id})" class="btn btn-info">View</a>*@
+                    <a asp-controller="Home" asp-action="Details" asp-route-id="@employee.Id" class="btn btn-info mt-1">View</a>
+                    <a asp-controller="Home" asp-action="Edit" asp-route-id="@employee.Id" class="btn btn-primary mt-1">Edit</a>
+                    <a asp-controller="Home" asp-action="Details" asp-route-id="@employee.Id" class="btn btn-danger mt-1">Delete</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

@@ -1,0 +1,16 @@
+﻿.btn{
+    width: 75px !important;
+    margin-right: 10px !important;
+    padding: 5px !important;
+}
+.color_blue{
+    color: #00ffff !important;
+}
+.images_fix{
+    height: 250px;
+    width: auto;
+    transition: all 0.4s ease-out;
+}
+.images_fix:hover{
+    transform: scale(1.1);
+}

@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Web.DAL.Interface\Web.DAL.Interface.csproj" />
+		<ProjectReference Include="..\WEB.Domainn\WEB.Domainnn.csproj" />
+	</ItemGroup>
+
+</Project>

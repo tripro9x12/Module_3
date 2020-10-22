@@ -1,0 +1,14 @@
+﻿@model Cake
+@{
+    ViewBag.Title = "Thông Tin Banh";
+}
+<div class="text-center" style="border: 1px solid #808080; border-radius: 5px; width: 60%; margin: 10px auto;">
+    <h4>Tên bánh: @Model.TenBanh</h4>
+    <p>Thành Phần: @Model.ThanhPhan</p>
+    <p>Ngày sản xuất: @Model.NSX.ToString("dd/MM/yyyy")</p>
+    <p>Ngày hết hạn: @Model.HSD.ToString("dd/MM/yyyy")</p>
+    <p>Giá Bán: @Model.GiaBan</p>
+</div>
+<div class="text-center">
+    <a asp-controller="Home" asp-action="Index" class="btn btn-warning btnn">Back</a>
+</div>

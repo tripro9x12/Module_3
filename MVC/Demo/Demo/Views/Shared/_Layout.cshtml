@@ -1,0 +1,88 @@
+﻿@inject SignInManager<ApplicationUser> signInManager
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/lib/datatables/css/jquery.dataTables.min.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm bg-info navbar-dark">
+        <!-- Brand/logo -->
+        <a class="navbar-brand" href="#">
+            <img src="~/images/2.png" alt="logo" style="width:40px; height: 40px; border-radius: 100%">
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Links -->
+        <div class="collapse navbar-collapse" id="mainMenu">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Home" asp-action="Index">List</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Home" asp-action="Create">Create</a>
+                </li>
+                @if (signInManager.IsSignedIn(User))
+                {
+                    if (User.IsInRole("System Admin"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Role" asp-action="Index">Role</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="User" asp-action="Index">User</a>
+                        </li>
+                    }
+                    else if (User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="User" asp-action="Index">User</a>
+                        </li>
+                    }
+                }
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                @if (signInManager.IsSignedIn(User))
+                {
+                    <li>
+
+                        <form asp-controller="Account" asp-action="Logout" method="post" style="display: inline-block !important">
+                            <button style="border: 0!important; background: 0!important; color: white;">@User.Identity.Name</button>
+                            <button type="submit" class="btn btn-link" style="width: auto !important; color: white"> Logout </button>
+                        </form>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Account" asp-action="Register">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Account" asp-action="Login">Login</a>
+                    </li>
+                }
+
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        @RenderBody()
+    </div>
+    <footer class="border-top card-footer text-muted">
+        <span>&copy; @DateTime.Now.ToString("dd-MM-yyyy")</span>
+    </footer>
+
+    <script src="~/lib/Jquery/jquery.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+    <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/JqueryValidate/jquery.validate.js"></script>
+    <script src="~/lib/JqueryValidationUnobtrusive/jquery.validate.unobtrusive.js"></script>
+    @RenderSection("scripts", false)
+</body>
+</html>

@@ -1,0 +1,49 @@
+﻿@model CategoryView
+@{
+    ViewData["Title"] = "List Book in category";
+}
+<div class="text-center">
+    <h5 class="display-4">Danh sách Books</h5>
+    <table id="tbBook" class="table table-bordered table-hover table-primary ">
+        <thead class="thead-dark">
+            <tr>
+                <th>#ID</th>
+                <th>Tên sách</th>
+                <th>Tác Giả</th>
+                <th>Thể Loại</th>
+                <th>Nội dung</th>
+                <th>Số Lượng</th>
+                <th>Năm xuất bản</th>
+                <th style="width:12%">Thao tác</th>
+            </tr>
+        </thead>
+        <tbody class="bg-light">
+            @foreach (var book in Model.books)
+            {
+                <tr>
+                    <td>@book.BookId</td>
+                    <td>@book.BookName</td>
+                    <td>@book.Author</td>
+                    <td>@book.CategoryName</td>
+                    <td>@book.Content</td>
+                    <th>@book.Amount</th>
+                    <td>@book.Time.ToString("dd/MM/yyyy")</td>
+                    <td>
+                        <a asp-controller="Home" asp-action="Detail" asp-route-id="@book.BookId" class="text-info"><i class="fas fa-eye"></i></a>
+                        <a asp-controller="Home" asp-action="Edit" asp-route-id="@book.BookId" class="text-primary"><i class="fas fa-edit"></i></a>
+                        <a href="javascript:void(0)" class="text-danger" onclick="book.delete(@book.BookId)"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<style>
+    a {
+        margin-right: 10px;
+    }
+</style>
+@section Scripts{
+    <script src="~/lib/bootbox.js/bootbox.min.js"></script>
+    <script src="~/js/book.js" asp-append-version="true"></script>
+}

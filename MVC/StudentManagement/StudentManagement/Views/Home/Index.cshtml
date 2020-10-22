@@ -1,0 +1,46 @@
+﻿@model List<StudentView>
+@{
+    ViewData["Title"] = "Danh sách Học Sinh";
+}
+<div class="text-center">
+    <h1 class="display-4">Danh sách học sinh</h1>
+    <table id="tbStudent" class="table table-bordered table-hover table-primary ">
+        <thead class="thead-dark">
+            <tr>
+                <th>#ID</th>
+                <th>Họ và tên</th>
+                <th>Email</th>
+                <th>Giới tính</th>
+                <th>Số điện thoại</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody class="bg-light">
+            @foreach (var student in Model)
+            {
+                <tr>
+                    <td>@student.Id</td>
+                    <td>@student.FullName</td>
+                    <td>@student.Email</td>
+                    <td>@student.Gender</td>
+                    <td>@student.PhoneNumber</td>
+                    <td>
+                        <a asp-controller="Home" asp-action="Detail" asp-route-id="@student.Id" class="text-info"><i class="fas fa-eye"></i></a>
+                        <a asp-controller="Home" asp-action="Edit" asp-route-id="@student.Id" class="text-primary"><i class="fas fa-edit"></i></a>
+                        <a href="javascript:void(0)" class="text-danger" onclick="student.delete(@student.Id)"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<style>
+    a {
+        margin-right: 10px;
+    }
+</style>
+@section Scripts{
+    <script src="~/lib/bootbox/bootbox.min.js"></script>
+    <script src="~/js/student.js" asp-append-version="true"></script>
+}
+

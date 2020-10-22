@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "Access Dinied";
+}
+<div class="alert alert-danger">
+    <h1>
+        @ViewBag.Title
+    </h1>
+    <hr />
+    <h5>You don't have permission to see this resource</h5>
+</div>
+<a asp-controller="Home" asp-action="Index" class="btn btn-outline-warning" style="width: auto !important;">Click hare to navigate Home page</a>

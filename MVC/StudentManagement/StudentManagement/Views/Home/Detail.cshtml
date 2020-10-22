@@ -1,0 +1,59 @@
+﻿@model StudentView;
+@{ 
+    ViewBag.Titlt = "Thông tin của học sinh";
+}
+<div class="row justify-content-center">
+    <div class="col-sm-6">
+        <div class="card my-2">
+            <div class="card-header">
+                <h1 class="text-center">@Model.FullName</h1>
+            </div>
+            <div>
+                <img src="/images/@Model.AvatarPath" class="card-img-top my-2" asp-append-version="true" />
+                <h5>Id: @Model.Id</h5>
+                <h5>Email: @Model.Email</h5>
+                <h5>Giới tính: @Model.Gender</h5>
+                <h5>Số điện thoại: @Model.PhoneNumber</h5>
+                <h5>Địa chỉ: @Model.Address - @Model.WardName - @Model.DistrictName - @Model.ProvinceName</h5>
+            </div>
+            <div class="card-footer text-center">
+                <a asp-controller="Home" asp-action="Index" class="btn btn-warning">Back</a>
+                <a asp-controller="Home" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteStudent">
+                    Delete
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal" id="deleteStudent">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Cảnh báo!!!!!!</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+               Bạn muốn xóa học sinh này khỏi danh sách không?
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <a asp-controller="Home" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Có</a>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Không</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<style>
+    h5{
+        color: #3d3f40;
+        margin-left:10px;
+    }
+</style>

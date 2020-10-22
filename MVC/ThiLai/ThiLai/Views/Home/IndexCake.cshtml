@@ -1,0 +1,51 @@
+﻿@model List<CakeViewModel>
+@{
+    ViewData["Title"] = "List Cake in category";
+}
+<div class="text-center">
+    <h5 class="display-4">List Cake</h5>
+    <table id="tbBook" class="table table-bordered table-hover table-primary ">
+        <thead class="thead-dark">
+            <tr>
+                <th>#ID</th>
+                <th>Tên Bánh</th>
+                <th>Thành Phần</th>
+                <th>Thể Loại</th>
+                <th>Ngày sản xuất</th>
+                <th>Hạn Sử Dụng</th>
+                <th>Giá Bán</th>
+                <th>Đã xóa</th>
+                <th style="width:12%">Thao tác</th>
+            </tr>
+        </thead>
+        <tbody class="bg-light">
+            @foreach (var cake in Model)
+            {
+                <tr>
+                    <td>@cake.CakeId</td>
+                    <td>@cake.TenBanh</td>
+                    <td>@cake.ThanhPhan</td>
+                    <td>@cake.CategoryName</td>
+                    <td>@cake.NSX.ToString("dd/MM/yyyy")</td>
+                    <th>@cake.HSD.ToString("dd/MM/yyyy")</th>
+                    <td>@cake.GiaBan</td>
+                    <td>@cake.DaXoa</td>
+                    <td>
+                        <a asp-controller="Home" asp-action="Detail" asp-route-id="@cake.CakeId" class="text-info"><i class="fas fa-eye"></i></a>
+                        <a asp-controller="Home" asp-action="Edit" asp-route-id="@cake.CakeId" class="text-primary"><i class="fas fa-edit"></i></a>
+                        <a href="javascript:void(0)" class="text-danger" onclick="cake.delete(@cake.CakeId)"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<style>
+    a {
+        margin-right: 10px;
+    }
+</style>
+@section Scripts{
+    <script src="~/lib/bootbox.js/bootbox.min.js"></script>
+    <script src="~/js/cake.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,84 @@
+﻿@model List<UserViewModel>
+@{
+    ViewBag.Title = "User Management";
+}
+<h3>@ViewBag.Title</h3>
+<a asp-controller="User" asp-action="Create" class="btn btn-warning" style="width:auto !important;">Create User</a>
+<table class="table table-bordered table-hover mt-2" style="font-size: 12px !important" id="iduser">
+    <thead>
+        <tr class="thead-dark">
+            <th>UserId</th>
+            <th>Email</th>
+            <th>City</th>
+            <th>Address</th>
+            <th>Roles</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.UserId</td>
+                    <td>@user.Email</td>
+                    <td>@user.City</td>
+                    <td>@user.Address</td>
+                    <td>@user.RolesName</td>
+
+                    <td>
+                        <a asp-controller="User" asp-action="Edit" asp-route-id="@user.UserId" class="btn btn-warning">Edit</a>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete">
+                            Delete
+                        </button>
+                        <div class="modal" id="delete">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Cảnh báo!!!!</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+                                        Bạn có muốn xóa user này?
+                                    </div>
+
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                        <a asp-controller="User" asp-action="Delete" asp-route-id="@user.UserId" class="btn btn-danger">Không</a>
+                                        <button type="button" class="btn btn-info" data-dismiss="modal">có</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<!-- The Modal -->
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#iduser').DataTable(
+                {
+                    "columnDefs": [
+                        {
+                            "targets": 5,
+                            "orderable": false,
+                            "searchable": false
+                        }
+                    ]
+                }
+            );
+        });
+    </script>
+}
